@@ -9,6 +9,7 @@ namespace dot_social.Database {
     public double latitude { get; set; }
     public double longitude { get; set; }
   }
+
   public class User {
     [Key]
     public int id { get; set; }
@@ -29,23 +30,52 @@ namespace dot_social.Database {
     public User user { get; set; }
     [ForeignKey("partnerId")]
     public User partner { get; set; }
-    public string type { get; set; }
+    public string relation { get; set; }
+    public bool romantic { get; set; }
     [DataType(DataType.Date)]
     public DateTime conception { get; set; }
   }
 
   public class Profile {
-    public int
+    [Key]
+    public int id { get; set; }
     [ForeignKey("userId")]
-    public User user;
-
+    public User user { get; set; }
   }
 
   public class Tag {
-
+    [Key]
+    public int id { get; set; }
+    public string name { get; set; }
+    public int referenced { get; set; }
+    [DataType(DataType.Date)]
+    public DateTime lastUsed { get; set; }
+    [DataType(DataType.Date)]
+    public DateTime created { get; set; }
   }
 
   public class Post {
+    [Key]
+    public int id { get; set; }
+    public string content { get; set; }
+    [DataType(DataType.Date)]
+    public DateTime created { get; set; }
+    [DataType(DataType.Date)]
+    public DateTime editted { get; set; }
+  }
 
+  // placeholder - possible rel map for tag -> <- post
+  public class TagFragment {
+  }
+
+  public class Like {
+    [Key]
+    public int id { get; set; }
+    [ForeignKey("userId")]
+    public User user { get; set; }
+    [ForeignKey("postId")]
+    public Post post { get; set; }
+    [DataType(DataType.Date)]
+    public DateTime created { get; set; }
   }
 }
