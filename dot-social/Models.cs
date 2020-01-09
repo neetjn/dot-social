@@ -49,14 +49,18 @@ namespace dot_social.Models {
     public int count { get; set; }
   }
 
+  // TODO: add list of likes with user data
   public class PostDto {
     public string href { get; set; }
+    public UserPublicDto author { get; set; }
     public string content { get; set; }
     public DateTime created { get; set; }
     public DateTime editted { get; set; }
+    public int likes { get; set; }
   }
 
   public class PostCollectionDto {
     public List<PostDto> posts { get; set; }
+    public int counter { get; set; }
   }
  }
