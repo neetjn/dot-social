@@ -19,6 +19,14 @@ namespace dot_social.Models {
     public bool deleted { get; set; }
   }
 
+  public class UserUpdateDto {
+    public string email { get; set; }
+    public string fullName { get; set; }
+    public string password { get; set; }
+    public DateTime birthday { get; set; }
+    public LocationDto location { get; set; }
+  }
+
   public class UserProfileDto {
     public string href { get; set; }
   }

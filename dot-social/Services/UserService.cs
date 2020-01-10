@@ -4,6 +4,7 @@ using System.Linq;
 using dot_social.Database;
 using dot_social.Entities;
 using dot_social.Models;
+using dot_social.Utils;
 
 namespace dot_social.Services {
   public interface IUserService {

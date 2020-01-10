@@ -16,6 +16,8 @@ namespace dot_social.Entities {
     public string username { get; set; }
     public string email { get; set; }
     public string fullName { get; set; }
+    public string password { get; set; }
+    public strin salt { get; set; }
     [DataType(DataType.Date)]
     public DateTime birthday { get; set; }
     [ForeignKey("locationId")]
