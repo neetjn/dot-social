@@ -2,6 +2,15 @@ using System;
 using System.Collections.Generic;
 
 namespace dot_social.Models {
+  public class LinkDto {
+    public string href { get; set; }
+    public string rel { get; set; }
+  }
+
+  public class ApiRootDto {
+    public List<LinkDto> links { get; set; }
+  }
+
   public class LocationDto {
     public string name { get; set; }
     public double latitude { get; set; }
