@@ -21,7 +21,7 @@ namespace dot_social.Models {
     public string href { get; set; }
     public string username { get; set; }
     public string email { get; set; }
-    public sring fullName { get; set; }
+    public string fullName { get; set; }
     public DateTime birthday { get; set; }
     public LocationDto location { get; set; }
     public DateTime joined { get; set; }
@@ -45,7 +45,7 @@ namespace dot_social.Models {
     public string username { get; set; }
     public string email { get; set; }
     public string fullName { get; set; }
-    public Location location { get; set; }
+    public LocationDto location { get; set; }
   }
 
   public class UserPublicCollectionDto {
