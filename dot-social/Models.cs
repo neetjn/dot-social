@@ -95,4 +95,10 @@ namespace dot_social.Models {
     public List<PostDto> posts { get; set; }
     public int counter { get; set; }
   }
+
+  public class PostCreationDto {
+  }
+
+  public class PostUpdateDto {
+  }
  }
