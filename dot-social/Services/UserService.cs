@@ -8,7 +8,7 @@ using dot_social.Models;
 namespace dot_social.Services {
   public interface IUserService {
     bool Authenticate(UserAuthenticationDto authDto);
-    User Create(int userId, UserRegistrationDto registrationDto);
+    User Create(UserRegistrationDto registrationDto);
     User GetById(int userId);
     void Update(int userId, UserUpdateDto userDto);
     void Delete(int userId);
