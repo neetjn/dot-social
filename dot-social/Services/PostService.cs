@@ -13,7 +13,7 @@ namespace dot_social.Services {
     void Delete(int postId);
   }
 
-  public interface PostService : IPostService {
+  public class PostService : IPostService {
     private DataContext _context;
 
     public UserService(DataContext context) {

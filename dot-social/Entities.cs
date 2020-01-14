@@ -24,7 +24,7 @@ namespace dot_social.Entities {
     public Location location { get; set; }
     [DataType(DataType.Date)]
     public DateTime joined { get; set; }
-    public bool deleted { get; set; }
+    public DateTime deleted { get; set; }
   }
 
   public class Relationship {

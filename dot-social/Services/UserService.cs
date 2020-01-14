@@ -7,7 +7,7 @@ using dot_social.Models;
 
 namespace dot_social.Services {
   public interface IUserService {
-    User Authenticate(UserAuthenticationDto authDto);
+    bool Authenticate(UserAuthenticationDto authDto);
     User Create(int userId, UserRegistrationDto registrationDto);
     User GetById(int userId);
     void Update(int userId, UserUpdateDto userDto);
@@ -15,39 +15,56 @@ namespace dot_social.Services {
   }
 
   public class UserService : IUserService {
-    private DataContext _context;
+    private DataContext context;
 
     public UserService(DataContext context) {
-      _context = context;
+      this.context = context;
     }
 
-    public User Authenticate(UserAuthenticationDto auth) {
-      if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-        return null;
+    public bool Authenticate(UserAuthenticationDto auth) {
+      if (string.IsNullOrEmpty(auth.username) || (string.IsNullOrEmpty(auth.username) || string.IsNullOrEmpty(auth.email))) {
+        return false;
+      }
 
-      var user = _context.Users.SingleOrDefault(x => x.Username == username || );
+      User user = context.Users
+        .Single(x => string.IsNullOrEmpty(u.username) ? u.username == auth.username : u.email == auth.email);
 
-      // check if username exists
-      if (user == null)
-        return null;
-
-      // check if password is correct
-      if (!dot_social.Utils.ComparePasswords(password, user.PasswordHash, user.PasswordSalt))
-        return null;
-
-      // authentication successful
-      return user;
+      return dot_social.Utils.ComparePasswords(password, user.PasswordHash, user.PasswordSalt);
     }
 
     public User GetById(int userId) {
-      return _context.Users.SingleOrDefault(x => x.id == userId);
+      return context.Users.Single(u => u.id == userId);
     }
 
     public User Create(UserRegistrationDto registrationDto) {
-
+      var user = context.Users
+        .SingleOrDefault(x => string.IsNullOrEmpty(u.username) ? u.username == auth.username : u.email == auth.email);
+      if (user != null) {
+        // error out for existing user
+      }
+      var author = new Author{ FirstName = "William", LastName = "Shakespeare" };
+      context.Add<Author>(author);
+      context.SaveChanges();
+      // TODO: (User Create) left here, figure out location logic
     }
 
-    public void Update(UserUpdateDto userDto) {
+    public void Update(int userId, UserUpdateDto userDto) {
+      User user = GetById(userId);
+
+      user.email = userDto.email;
+      user.fullName = userDto.fullName;
+      if (userDto.password) {
+        user.password = Utils.HashPassword(userDto.password, user.salt);
+      }
+      user.birthday = userDto.birthday;
+      // TODO: (User Update) left here, figure out location logic
+    }
+
+    public void Delete(int userId) {
+      User user = GetById(userId);
+      user.deleted = DateTime.now;
+      context.Users.Update(user);
+      context.SaveChanges();
     }
   }
 }

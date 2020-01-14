@@ -46,7 +46,6 @@ namespace dot_social.Models {
   public class UserUpdateDto {
     public string email { get; set; }
     public string fullName { get; set; }
-    public string password { get; set; }
     public DateTime birthday { get; set; }
     public LocationDto location { get; set; }
   }
@@ -97,8 +96,10 @@ namespace dot_social.Models {
   }
 
   public class PostCreationDto {
+    public string content { get; set; }
   }
 
   public class PostUpdateDto {
+    public string content { get; set; }
   }
  }
