@@ -4,13 +4,12 @@ using System.Linq;
 using dot_social.Database;
 using dot_social.Entities;
 using dot_social.Models;
-using dot_social.Utils;
 
 namespace dot_social.Services {
   public interface IUserService {
-    User Authenticate(string username, string password);
-    User GetById(int id);
-    User Create()
+    User Authenticate(UserAuthenticationDto authDto);
+    User Create(UserRegistrationDto registrationDto);
+    void Update(UserUpdateDto userDto);
   }
 
   public class UserService : IUserService {
@@ -20,7 +19,7 @@ namespace dot_social.Services {
       _context = context;
     }
 
-    public User Authenticate() {
+    public User Authenticate(UserAuthenticationDto auth) {
       if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         return null;
 
@@ -31,11 +30,17 @@ namespace dot_social.Services {
         return null;
 
       // check if password is correct
-      if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+      if (!dot_social.Utils.ComparePasswords(password, user.PasswordHash, user.PasswordSalt))
         return null;
 
       // authentication successful
       return user;
+    }
+
+    public User Create(UserRegistrationDto registrationDto) {
+    }
+
+    public void Update(UserUpdateDto userDto) {
     }
   }
 }

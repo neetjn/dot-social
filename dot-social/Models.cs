@@ -17,6 +17,21 @@ namespace dot_social.Models {
     public double longitutde { get; set; }
   }
 
+  public class UserAuthenticationDto {
+    public string username { get; set; }
+    public string email { get; set; }
+    public string password { get; set; }
+  }
+
+  public class UserRegistrationDto {
+    public string username { get; set; }
+    public string email { get; set; }
+    public string fullName { get; set; }
+    public DateTime birthday { get; set; }
+    public string password { get; set; }
+    public LocationDto location { get; set; }
+  }
+
   public class UserDto {
     public string href { get; set; }
     public string username { get; set; }
