@@ -29,7 +29,7 @@ namespace dot_social.Models {
     public string fullName { get; set; }
     public DateTime birthday { get; set; }
     public string password { get; set; }
-    public LocationDto location { get; set; }
+    public int location { get; set; }
   }
 
   public class UserDto {
@@ -38,7 +38,7 @@ namespace dot_social.Models {
     public string email { get; set; }
     public string fullName { get; set; }
     public DateTime birthday { get; set; }
-    public LocationDto location { get; set; }
+    public int locationId { get; set; }
     public DateTime joined { get; set; }
     public bool deleted { get; set; }
   }
@@ -47,7 +47,7 @@ namespace dot_social.Models {
     public string email { get; set; }
     public string fullName { get; set; }
     public DateTime birthday { get; set; }
-    public LocationDto location { get; set; }
+    public int locationId { get; set; }
   }
 
   public class UserProfileDto {
