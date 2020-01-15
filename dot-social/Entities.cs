@@ -17,7 +17,7 @@ namespace dot_social.Entities {
     public string email { get; set; }
     public string fullName { get; set; }
     public string password { get; set; }
-    public strin salt { get; set; }
+    public string salt { get; set; }
     [DataType(DataType.Date)]
     public DateTime birthday { get; set; }
     [ForeignKey("locationId")]
@@ -59,6 +59,8 @@ namespace dot_social.Entities {
   public class Post {
     [Key]
     public int id { get; set; }
+    [ForeignKey("userId")]
+    public User author { get; set; }
     public string content { get; set; }
     [DataType(DataType.Date)]
     public DateTime created { get; set; }
