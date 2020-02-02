@@ -27,8 +27,8 @@ namespace dot_social.Services {
         return false;
       }
       User user = context.Users
-        .Single(x => string.IsNullOrEmpty(u.username) ? u.username == auth.username : u.email == auth.email);
-      return dot_social.Utils.ComparePasswords(password, user.PasswordHash, user.PasswordSalt);
+        .Single(u => string.IsNullOrEmpty(u.username) ? u.username == auth.username : u.email == auth.email);
+      return dot_social.Utils.ComparePasswords(auth.password, user.password, user.salt);
     }
 
     /// <summary>
@@ -40,11 +40,9 @@ namespace dot_social.Services {
     /// <summary>
     /// </summary>
     public User Create(UserRegistrationDto registrationDto) {
-      try {
-         context.Users
-          .Single(u => u.username == registrationDto.username || u.email == registrationDto.email);
-      }
-      catch () {
+      bool userExists = context.Users
+        .Any(u => u.username == registrationDto.username || u.email == registrationDto.email);
+      if (userExists) {
         string salt = Utils.GenerateSalt();
         string password = Utils.HashPassword(registrationDto.password, salt);
         User user = new User{
@@ -54,14 +52,14 @@ namespace dot_social.Services {
           birthday = registrationDto.birthday,
           password = password,
           salt = salt,
-          joined = DateTime.now,
-          locationId = registrationDto.locationId
+          joined = DateTime.Now
+          /* locationId = registrationDto.locationId */
         };
-        context.Add<User>(suser);
+        /* context.Add<User>(user); */
         context.SaveChanges();
-      } finally {
-
+        return user;
       }
+      return null;
     }
 
     /// <summary>
@@ -70,19 +68,19 @@ namespace dot_social.Services {
       User user = GetById(userId);
       user.email = userDto.email;
       user.fullName = userDto.fullName;
-      if (userDto.password) {
+      if (!string.IsNullOrEmpty(userDto.password)) {
         user.password = Utils.HashPassword(userDto.password, user.salt);
       }
       user.birthday = userDto.birthday;
-      user.locationId = userDto.locationId;
+      /* user.locationId = userDto.locationId; */
     }
 
     /// <summary>
     /// </summary>
     public void Delete(int userId) {
       User user = GetById(userId);
-      user.deleted = DateTime.now;
-      context.Users.Update(user);
+      user.deleted = DateTime.Now;
+      /* context.Update(user); */
       context.SaveChanges();
     }
   }

@@ -5,5 +5,9 @@
     <RootNamespace>dot_social</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.0" />
+  </ItemGroup>
+
 
 </Project>

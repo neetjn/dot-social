@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using dot_social.Models;
 
 namespace dot_social.Controllers
 {
@@ -19,9 +20,10 @@ namespace dot_social.Controllers
     }
 
     [HttpGet]
-    public IEnumerable<UserPublicDto> Get()
+    public UserPublicDto Get()
     {
-
+      UserPublicDto userDto = new UserPublicDto{};
+      return userDto;
     }
   }
 }

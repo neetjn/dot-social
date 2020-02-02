@@ -22,27 +22,28 @@ namespace dot_social.Services {
 
     public Post Create(int userId, PostCreationDto postDto) {
       Post post = new Post{
-        author = userId,
+        /* authorId = userId, */
         content = postDto.content
       };
+      return post;
     }
 
     public Post GetById(int postId) {
       return context.Posts.Single(p => p.id == postId);
     }
 
-    void Update(int postId, PostUpdateDto postDto) {
+    public void Update(int postId, PostUpdateDto postDto) {
       Post post = GetById(postId);
       post.content = postDto.content;
-      post.updated = DateTime.now;
-      context.Posts.Update(post);
-      context.SaveChanges();
+      post.editted = DateTime.Now;
+      /* context.Posts.Update(post); */
+      /* context.Posts.SaveChanges(); */
     }
 
-    void Delete(int postId) {
+    public void Delete(int postId) {
       Post post = GetById(postId);
       context.Posts.Remove(post);
-      context.SaveChanges();
+      /* context.SaveChanges(); */
     }
   }
 }
