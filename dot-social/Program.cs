@@ -21,8 +21,6 @@ namespace dot_social {
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
             .AddEnvironmentVariables();
-          Console.WriteLine("Loaded Config?");
-          Console.WriteLine(config);
         })
         .ConfigureWebHostDefaults(webBuilder => {
           webBuilder.UseStartup<Startup>();
