@@ -22,8 +22,9 @@ namespace dot_social.Services {
 
     public Post Create(int userId, PostCreationDto postDto) {
       Post post = new Post{
-        /* authorId = userId, */
-        content = postDto.content
+        authorId = userId,
+        content = postDto.content,
+        created = DateTime.Now
       };
       return post;
     }

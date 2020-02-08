@@ -52,8 +52,8 @@ namespace dot_social.Services {
           birthday = registrationDto.birthday,
           password = password,
           salt = salt,
-          joined = DateTime.Now
-          /* locationId = registrationDto.locationId */
+          joined = DateTime.Now,
+          locationId = registrationDto.locationId
         };
         /* context.Add<User>(user); */
         context.SaveChanges();
@@ -72,7 +72,7 @@ namespace dot_social.Services {
         user.password = Utils.HashPassword(userDto.password, user.salt);
       }
       user.birthday = userDto.birthday;
-      /* user.locationId = userDto.locationId; */
+      user.locationId = userDto.locationId;
     }
 
     /// <summary>

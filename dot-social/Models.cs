@@ -29,7 +29,7 @@ namespace dot_social.Models {
     public string fullName { get; set; }
     public DateTime birthday { get; set; }
     public string password { get; set; }
-    public int location { get; set; }
+    public int locationId { get; set; }
   }
 
   public class UserDto {

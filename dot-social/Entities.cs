@@ -19,7 +19,8 @@ namespace dot_social.Entities {
     public string salt { get; set; }
     [DataType(DataType.Date)]
     public DateTime birthday { get; set; }
-    [ForeignKey("locationId")]
+    [ForeignKey("location")]
+    public int locationId { get; set; }
     public Location location { get; set; }
     [DataType(DataType.Date)]
     public DateTime joined { get; set; }
@@ -27,9 +28,11 @@ namespace dot_social.Entities {
   }
 
   public class Relationship {
-    [ForeignKey("userId")]
+    [ForeignKey("user")]
+    public int userId { get; set; }
     public User user { get; set; }
-    [ForeignKey("partnerId")]
+    [ForeignKey("partner")]
+    public int partnerId { get; set; }
     public User partner { get; set; }
     public string relation { get; set; }
     public bool romantic { get; set; }
@@ -40,7 +43,8 @@ namespace dot_social.Entities {
   public class Profile {
     [Key]
     public int id { get; set; }
-    [ForeignKey("userId")]
+    [ForeignKey("user")]
+    public int userId { get; set; }
     public User user { get; set; }
   }
 
@@ -58,7 +62,8 @@ namespace dot_social.Entities {
   public class Post {
     [Key]
     public int id { get; set; }
-    [ForeignKey("userId")]
+    [ForeignKey("author")]
+    public int authorId { get; set; }
     public User author { get; set; }
     public string content { get; set; }
     [DataType(DataType.Date)]
@@ -74,9 +79,11 @@ namespace dot_social.Entities {
   public class Like {
     [Key]
     public int id { get; set; }
-    [ForeignKey("userId")]
+    [ForeignKey("user")]
+    public int userId { get; set; }
     public User user { get; set; }
-    [ForeignKey("postId")]
+    [ForeignKey("post")]
+    public int postId { get; set; }
     public Post post { get; set; }
     [DataType(DataType.Date)]
     public DateTime created { get; set; }
